@@ -1,0 +1,22 @@
+﻿DEPLOY RESOURCE "/helloworld.txt";
+
+@departments =
+  SELECT * 
+  FROM (VALUES
+      (31, "Sales"),
+      (33, "Engineering"),
+      (34, "Clerical"),
+      (35, "Marketing")
+    ) AS D( DepID, DepName );
+
+
+@departments =
+     PROCESS @departments
+     PRODUCE DepID int,
+             DepName string,
+             HelloWorld string
+     USING new Demo.HelloWorldProcessor();
+
+OUTPUT @departments 
+    TO "/departments.tsv"
+    USING Outputters.Tsv();

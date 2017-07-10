@@ -1,0 +1,20 @@
+﻿DEPLOY RESOURCE "/helloworld.txt";
+
+DECLARE @hw = System.[IO].File.ReadAllText("helloworld.txt") ;
+
+@departments =
+  SELECT * 
+  FROM (VALUES
+      (31, "Sales"),
+      (33, "Engineering"),
+      (34, "Clerical"),
+      (35, "Marketing")
+    ) AS D( DepID, DepName );
+
+@departments =
+    SELECT DepID, DepName, @hw AS Message
+    FROM @departments;
+
+OUTPUT @departments 
+    TO "/departments.tsv"
+    USING Outputters.Tsv();
