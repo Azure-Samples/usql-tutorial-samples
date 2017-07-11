@@ -1,3 +1,6 @@
+# U-SQL Tutorial Samples
+
+These are the sample files used in the U-SQL tutorial http://aka.ms/usqltutorial
 
 # Contributing
 
