@@ -1,0 +1,21 @@
+﻿
+DECLARE @Start = 2;
+DECLARE @End = 5;
+
+@a = 
+    SELECT
+        *
+    FROM 
+    (VALUES
+        (1)
+    ) AS T(DummyValue);
+
+@b =
+    SELECT Value
+    FROM @a
+         CROSS APPLY
+             new Demo.IntegerRangeApplier(@Start, @End) AS Y(Value int);
+
+OUTPUT @b
+TO "/o.csv"
+USING Outputters.Csv();
