@@ -1,7 +1,4 @@
 ﻿
-DECLARE @Start = 2;
-DECLARE @End = 5;
-
 @a = 
     SELECT
         *
@@ -12,9 +9,8 @@ DECLARE @End = 5;
 
 @b =
     SELECT Value
-    FROM @a
-         CROSS APPLY
-             new Demo.IntegerRangeApplier(@Start, @End) AS Y(Value int);
+    FROM @a AS Left 
+         CROSS APPLY new Demo.IntegerRangeApplier(0,9) AS Right(Value int);
 
 OUTPUT @b
 TO "/o.csv"
