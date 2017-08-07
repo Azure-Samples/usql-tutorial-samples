@@ -1,7 +1,7 @@
 ---
 services: data-lake-analytics
 platforms: dotnet
-author: saveenr-msft
+author: saveenr
 ---
 
 # U-SQL Tutorial Samples
